@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html ng-app="cbrdataapp">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/cbrdata.css">
+    <title>{{ page.title }}</title>
+  </head>
+  <body  ng-controller="cbrDataController as cbrdataCtrl" ng-cloak>
+    <section>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Civ Battle Royale Data</a>
+        </div>
+        <div class="collapse navbar-collapse" id="nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">// selectedStat //
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li ng-repeat='stat in stats' ng-click="cbrdataCtrl.CreateChart('Turn',stat,selectedCiv)"><a href="#">// stat //</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">// selectedCiv //
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li ng-repeat='civ in civilisations' ng-click="cbrdataCtrl.CreateChart('Turn',selectedStat,civ)"><a href="#">// civ //</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div><!-- /.container-fluid -->
+    </nav>
+    </section>
+
+    <section id="cbrChart">
+      <chart>
+        
+      </chart>
+    </section>
+
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js"></script>
+    <script src="../javascripts/d3.min.js"></script>
+    <script src="../javascripts/app.js"></script>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-72768367-1");
+            pageTracker._trackPageview();
+        } catch(err) {}
+    </script>
+</body>
+</html>
