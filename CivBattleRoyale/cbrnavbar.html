@@ -1,4 +1,5 @@
-<div class="container-fluid">
+<nav class="navbar navbar-default" ng-controller="cbrnavController as cbrnav">
+      <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" aria-expanded="false">
@@ -11,21 +12,15 @@
         </div>
         <div class="collapse navbar-collapse" id="nav-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#">// selectedStat //
-              <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li ng-repeat='stat in stats' ng-click="cbrdataCtrl.CreateGraph('Turn','// stat //','// selectedCiv //')"><a href="#">// stat //</a></li>
-              </ul>
+            <li ng-class="{active:cbrnav.isSelected(1)}"><a href = "#" ng-click="cbrnav.selectTab(1)">Home</a></li>
+            <li ng-class="{active:cbrnav.isSelected(2)}">
+                  <a href = "#" ng-click="cbrnav.selectTab(2)">Chart</a>
             </li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#">// selectedCiv //
-              <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li ng-repeat='civ in civilisations' ng-click="cbrdataCtrl.SetCivilisation('// civ //')"><a href="#">// civ //</a></li>
-              </ul>
+            <li ng-class="{active:cbrnav.isSelected(3)}">
+              <a href = "#" ng-click="cbrnav.selectTab(3)">Table</a> <!-- ng-click="cbrdataCtrl.CreateTable()" -->
             </li>
           </ul>
+          
         </div>
       </div><!-- /.container-fluid -->
+</nav>

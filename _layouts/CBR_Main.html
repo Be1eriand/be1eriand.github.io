@@ -2,48 +2,57 @@
 <html ng-app="cbrdataapp">
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/cbrdata.css">
     <title>{{ page.title }}</title>
   </head>
   <body  ng-controller="cbrDataController as cbrdataCtrl" ng-cloak>
     <section>
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Civ Battle Royale Data</a>
-        </div>
-        <div class="collapse navbar-collapse" id="nav-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#">// selectedStat //
-              <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li ng-repeat='stat in stats' ng-click="cbrdataCtrl.CreateChart('Turn',stat,selectedCiv)"><a href="#">// stat //</a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#">// selectedCiv //
-              <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li ng-repeat='civ in civilisations' ng-click="cbrdataCtrl.CreateChart('Turn',selectedStat,civ)"><a href="#">// civ //</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div><!-- /.container-fluid -->
-    </nav>
+      <cbrnavbar></cbrnavbar>
     </section>
-
-    <section id="cbrChart">
+    <section id="cbrHome" ng-show="cbrdataCtrl.isSelected(1)">
+      <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">About This Site</div>
+            <div class="panel-body">
+              <p>This website is a work in progress, and is to allow people to view the data that is being generated from the Civ Battle Royale. For a look at the the community that has inspired this site, you can follow the link to the Reddit site, <a href="https://www.reddit.com/r/civbattleroyale/">Civ Battle Royale</a>.</p>
+              <p>The Charts: At this stage, you can only select one stat and civilisation at a time. My aim is to expand this to select multiple civilisations at one time, and also to select multiple stats as well.</p>
+              <p>The Data Table: Once you click the button "Display Table", the site will load the data from the server and process into a table. As this is a very large file, and is growing with each part it will take a while to load and display. Please be patient.</p>
+              <p></p>
+              <p>Any feedback you wish to give about what has been done, or any suggestions or improvements, please message me on reddit. My username is <a href="https://www.reddit.com/message/compose/">Be1eriand</a>. One of my other aims is to let you download the CSV to your computer is you so wish, along with being able to process the InfoAddict data into a form that can be handled by this site and spreadsheets.</p>
+            </div>
+      </div>
+    </section>
+    <section id="cbrTable" ng-show="cbrdataCtrl.isSelected(3)">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">The Civ Battle Royale Data</div>
+            <div class="panel-body">
+              <p>...</p>
+            </div>
+            <button type="button" class="btn btn-primary" ng-click="cbrdataCtrl.CreateTable()">Display Table</button>
+            <div class="table-responsive" id="table"></div>
+        </div>
+    </section>
+    <section id="cbrChart" ng-show="cbrdataCtrl.isSelected(2)">
+            <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">The Charts</div>
+            <div class="panel-body">
+              <p>...</p>
+            </div>
+      </div>
+      <form name="cbrStatSelect">
+          <label for="StatSelect"> Stat: </label>
+          <select name="StatSelect" id="StatSelect" ng-model="selectedStat" ng-change="cbrdataCtrl.CreateChart('Turn',selectedStat,selectedCiv)">
+            <option ng-repeat='stat in stats'" value="//stat//">// stat //</option>
+          </select>
+              <label for="CivSelect"> Civilisation: </label>
+          <select name="CivSelect" id="CivSelect" ng-model="selectedCiv" ng-change="cbrdataCtrl.CreateChart('Turn',selectedStat,selectedCiv)">
+            <option ng-repeat="civ in civilisations" value="// civ //">// civ //</option>
+          </select>
+      </form>
       <chart>
         
       </chart>
@@ -54,6 +63,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js"></script>
     <script src="../javascripts/d3.min.js"></script>
     <script src="../javascripts/app.js"></script>
+    <script src="../javascripts/cbrData.js"></script>
+    <!-- <script src="../javascripts/cbrNav.js"></script> -->
     <script type="text/javascript">
     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
     document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
