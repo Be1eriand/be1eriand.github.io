@@ -19,3 +19,7 @@
   stroke: steelblue;
   stroke-width: 1.5px;
 }
+
+#popup a { position:relative; }
+#popup a span { position:absolute; display:none; z-index:99; }
+#popup a:hover span { display:block; }

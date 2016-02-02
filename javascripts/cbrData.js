@@ -1,6 +1,30 @@
 (function () {
 var app = angular.module('cbrData',[]);
 
+var InfoAddictStats = {
+g: "Net Gold per Turn",
+i: "Gross Gold per Turn",
+tg: "Treasury",
+m: "Military Manpower",
+s: "Score",
+h: "Happiness",
+sc: "Science",
+t: "Techs",
+l: "Land",
+p: "Production",
+f: "Food",
+c: "Social Policies",
+cc: "Culture per Turn",
+po: "Population",
+nc: "Number of Cities",
+w: "Wonders",
+fa: "Total Faith",
+fr: "Faith per Turn",
+tru: "Trade Routes",
+gw: "Great Works",
+in: "Number of Civs Influenced",
+to: "Tourism" };
+
 app.controller('cbrDataController', ['$scope','$rootScope', function ($scope,$rootScope) {
     
     $scope.cbrdata ={};
@@ -11,12 +35,7 @@ app.controller('cbrDataController', ['$scope','$rootScope', function ($scope,$ro
     $scope.civilisations = {};
     $scope.selectedCiv = {};
     $scope.selectedStat = {};
-    $scope.cbrTab = 1;
-    
-    this.selectTab = function(setTab){
-        $scope.cbrTab = setTab;
-    };
-    
+
     this.isSelected = function(checkTab){
         return ($rootScope.cbrTab === checkTab);
         };
