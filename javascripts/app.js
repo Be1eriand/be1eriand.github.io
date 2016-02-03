@@ -38,7 +38,6 @@ app.directive('cbrnavbar', function() {
                  
 }]);
  
- 
 app.controller('cbrImportController',['$scope', function($scope){
     $scope.InfoAddictData = {};
     $scope.ImportedCivList = {};
@@ -46,6 +45,7 @@ app.controller('cbrImportController',['$scope', function($scope){
     this.CivFileLoaded = 0;
     this.DataFileLoaded = 0;
 
+    
     this.ImportCivilisation = function(importCivFile){ //"data/InfoAddictLog.csv"
         d3.text(importCivFile, function(data){
             $scope.ImportedCivList = d3.csv.parse(data);

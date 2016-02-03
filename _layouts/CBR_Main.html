@@ -43,17 +43,7 @@
               <p>The charts currently display the info addict data up to Turn 323. I have not received any further updates for turns 324 - 341. I'm sure at some point it will get updated, and be provided your enjoyment.</p>
             </div>
       </div>
-      <form name="cbrStatSelect">
-          <label for="StatSelect"> Stat: </label>
-          <select name="StatSelect" id="StatSelect" ng-model="selectedStat" ng-change="cbrdataCtrl.CreateChart('Turn',selectedStat,selectedCiv)">
-            <option ng-repeat='stat in stats'" value="//stat//">// stat //</option>
-          </select>
-              <label for="CivSelect"> Civilisation: </label>
-          <select name="CivSelect" id="CivSelect" ng-model="selectedCiv" ng-change="cbrdataCtrl.CreateChart('Turn',selectedStat,selectedCiv)">
-            <option ng-repeat="civ in civilisations" value="// civ //">// civ //</option>
-          </select>
-      </form>
-      <chart>
+      <chart id="Chart">
         
       </chart>
     </section>
@@ -68,17 +58,13 @@
               <p>Note: If you are using Internet Explorer, it will download the file as a big long number to your save directory. To load the file in to whatever spreadsheet program you wish change the name of the file to filename.csv.
               It seems to work fine in Chrome, and will save as a nice filename that you choose.</p>
             </div>
-            <div id="cbrImportCivFile">
+            <div id="cbrImportCivFile">         
                 <form id="cbrCivForm">
-                    <!-- <input type="file" id="importCivFile" size="50" ng-model="CivFile" required> -->
-                    <span class="sr-only"></span>
-                    <button type="button" class="btn btn-primary" ng-click="cbrImport.ImportCivilisation('data/InfoAddictLog.csv')">Import Civilisations</button>
+                  <button class="btn btn-primary" ng-click="cbrImport.ImportCivilisation('data/InfoAddictLog.csv')">Import Civilisations</button>
                 </form>
             </div>
             <div id="cbrImportDataFile" ng-show="cbrImport.CanShowImportDataButton()">
                 <form id="cbrDataForm">
-                   <!-- <input type="file" id="importDataFile" size="50" ng-model="DataFile" required> -->
-                    <span class="sr-only"></span>
                     <button type="button" class="btn btn-primary" ng-click="cbrImport.ImportInfoAddictData('data/InfoAddictHistoricalData.csv')">Import InfoAddict Data</button>
                 </form>
             </div>

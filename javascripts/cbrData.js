@@ -76,8 +76,13 @@ app.controller('cbrDataController', ['$scope','$rootScope', function ($scope,$ro
 
     this.CreateChart = function(xVar,yVar,Civ) {
         
-        var dataset = $scope.cbrdata.parsed.filter(function(d) {return d["Civilization"] == Civ});
-        
+        var dataset = $scope.cbrdata.parsed.filter(function(d) {
+             for (i in Civ) {
+              if (d["Civilization"] === Civ[i]) {return true;}
+             } 
+            return false;
+            });
+
             $scope.selectedStat = yVar;
             $scope.selectedCiv = Civ;
     
@@ -85,11 +90,10 @@ app.controller('cbrDataController', ['$scope','$rootScope', function ($scope,$ro
             width = 960 - margin.left - margin.right,
             height = 600 - margin.top - margin.bottom;
             
-         var chart= d3.select("chart")
+         var chart= d3.select("#graph")
                       .remove();
                   
-                d3.select("#cbrChart")
-                  .append("chart")
+                d3.select("#Chart")
                   .append("div")
                   .attr("id","graph")
                                
@@ -156,12 +160,38 @@ app.controller('cbrDataController', ['$scope','$rootScope', function ($scope,$ro
                .attr("transform", "rotate(-90)")
                .attr("y", 10)
                .text(yVar);
+
+            var lineColour = {};
+            
+            for (i in Civ) {
+                var s = d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255)
+                lineColour[i] = s.toString();
+            }
+            var legend = vis.selectAll("g.legend")
+                    .data(Civ)
+                    .enter().append("svg:g")
+                    .attr("class", "legend")
+                    .attr("transform", function(d, i) { return "translate(" + (100) + "," + (i * 20) + ")"; });
+              
+                legend.append("svg:circle")
+                    //.attr("class", String)
+                    .attr("r", 5)
+                    .style("fill",function(d,i) {return lineColour[i]});
+
+              
+                legend.append("svg:text")
+                    .attr("x", 12)
+                    .attr("dy", ".31em")
+                    .text(function(d) { return d; });
                
-            vis.append("path")
-               .datum(dataset)
-               .attr("class", "line")
-               .attr("d", line);
-                          
+            for (i in Civ) {
+                vis.append("path")
+                   .datum(dataset.filter(function(d) {return d["Civilization"] === Civ[i]}))
+                   .attr("class", "line")
+                   .attr("d", line)
+                   .style("stroke",lineColour[i]);
+            }
+                         
     };
     
     this.CreateTable = function(){
