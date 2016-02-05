@@ -1,8 +1,8 @@
-<nav class="navbar navbar-default" ng-controller="cbrnavController as cbrnav">
+<nav class="navbar navbar-default navbar-fixed-top" ng-controller="cbrnavController as cbrnav">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" aria-expanded="false">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" aria-expanded="false" data-target="#cbrNavMenu">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -10,7 +10,7 @@
         </button>
         <a class="navbar-brand" href="#">Civ Battle Royale Data</a>
         </div>
-        <div class="collapse navbar-collapse" id="nav-collapse">
+        <div class="collapse navbar-collapse" id="cbrNavMenu">
           <ul class="nav navbar-nav">
             <li ng-class="{active:cbrnav.isSelected(1)}"><a href = "#Home" ng-click="cbrnav.selectTab(1)">Home</a></li>
             <li ng-class="{active:cbrnav.isSelected(2)}">
