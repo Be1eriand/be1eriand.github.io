@@ -1,6 +1,35 @@
-<table>
-    <tr ng-repeat="x in cbrdataCtrl.data">
-        <td>{{ x.Player }}</td>
-
+<div class="table-responsive" >
+<table class="table-striped table-bordered table-responsive">
+    <thead>
+        <td ng-repeat="stat in stats">// stat //</td>
+    </thead>
+    <tr ng-repeat="row in parsed | cbrSelect: 'Civilization': TableCiv ">
+        <td>// row["Turn"] //</td>
+        <td>// row["Player"] //</td>
+        <td>// row["Civilization"] //</td>
+        <td>// row["Net Gold per Turn"] //</td>
+        <td>// row["Gross Gold per Turn"] //</td>
+        <td>// row["Treasury"] //</td>
+        <td>// row["Happiness"] //</td>
+        <td>// row["Social Policies"] //</td>
+        <td>// row["Culture per Turn"] //</td>
+        <td>// row["Military Manpower"] //</td>
+        <td>// row["Science"] //</td>
+        <td>// row["Score"] //</td>
+        <td>// row["Land"] //</td>
+        <td>// row["Production"] //</td>
+        <td>// row["Food"] //</td>
+        <td>// row["Population"] //</td>
+        <td>// row["Cities"] //</td>
+        <td>// row["Wonders"] //</td>
+        <td>// row["Techs"] //</td>
+        <td>// row["Total Faith"] //</td>
+        <td>// row["Faith per Turn"] //</td>
+        <td>// row["Trade Routes"] //</td>
+        <td>// row["Great Works"] //</td>
+        <td>// row["Number of Civs Influenced"] //</td>
+        <td>// row["Tourism"] //</td>
+        <td>// row["Research Power"] //</td>
     </tr>
 </table>
+</div>

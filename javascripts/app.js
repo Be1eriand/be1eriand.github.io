@@ -22,6 +22,20 @@ app.directive('cbrtable', function(){
               
      });
  
+ app.filter("cbrSelect", function() { // register new filter
+     return function(row, stat, value) { // filter arguments
+        try {
+            return row.filter(function(d) {
+                return d[stat] == value;
+            });// implementation
+        }
+        catch(x){
+            return false;
+        }
+    };
+    
+ });
+ 
  app.controller('cbrnavController',['$rootScope', function ($rootScope) {
         $rootScope.cbrTab = 1;
         

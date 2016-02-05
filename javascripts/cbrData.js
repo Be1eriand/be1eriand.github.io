@@ -35,6 +35,7 @@ app.controller('cbrDataController', ['$scope','$rootScope', function ($scope,$ro
     $scope.civilisations = {};
     $scope.selectedCiv = {};
     $scope.selectedStat = {};
+    $scope.parsed = {};
 
     this.isSelected = function(checkTab){
         return ($rootScope.cbrTab === checkTab);
@@ -62,7 +63,9 @@ app.controller('cbrDataController', ['$scope','$rootScope', function ($scope,$ro
         
     $scope.cbrdata.parsed = parsedCSV;
     
-    $scope.cbrdata.parsedRows = d3.csv.parseRows(datasetText)
+    $scope.cbrdata.parsedRows = d3.csv.parseRows(datasetText);
+
+     $scope.parsed = parsedCSV;
         
     $scope.cbrdata.turn = d3.nest()
                             .key(function(d) { return d.Turn})

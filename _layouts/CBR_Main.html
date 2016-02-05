@@ -31,8 +31,12 @@
             <div class="panel-body">
               <p>Please note that once you load the Table so that it is displayed, it will slow down the browser when flicking from panel to panel. I hope to resolve this by displaying only what is needed. My advice is to refresh the page once you have had a look at the table.</p>
             </div>
-            <button type="button" class="btn btn-primary" ng-click="cbrdataCtrl.CreateTable()">Display Table</button>
-            <div class="table-responsive table-hover" id="table">
+            <div id="table">
+                <div>
+                    <select ng-model="TableCiv">
+                     <option ng-repeat="c in civilisations" value="// c //">// c //</option>
+                    </select>
+                </div>
                 <cbrtable></cbrtable>
             </div>
         </div>
@@ -89,34 +93,56 @@
               With this mod, the data is not stored in memory and written, at this point, directly to the sqlite database. And as you can see, there is a massive amount of data, extra data, about the game.</p>
             </div>
         </div>
-        <div class="media">
-            <div class="media-left popup">
+        <div class="container">
+          <div id="cbrCarousel" class="carousel slide" data-ride="carousel" width="720">
+          
+            <ol class="carousel-indicators">
+              <li data-target="#cbrCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#cbrCarousel" data-slide-to="1"></li>
+              <li data-target="#cbrCarousel" data-slide-to="2"></li>
+              <li data-target="#cbrCarousel" data-slide-to="3"></li>
+              <li data-target="#cbrCarousel" data-slide-to="4"></li>
+              <li data-target="#cbrCarousel" data-slide-to="5"></li>
+            </ol>
+          
+            <div class="carousel-inner" role="listbox">
+              <div class="item active">
               <a href="../images/sneakpeak0002.PNG" target="_blank">
-                <img src="../images/sneakpeak0002.PNG" class="img-responsive" alt="Responsive image">
+                <img src="../images/sneakpeak0002.PNG" class="img-responsive" alt="Responsive image" width="720">
               </a>
             </div>
-            <div class="media-left popup">
-              <a href="../images/sneakpeak0005.PNG" target="_blank">
-                <img src="../images/sneakpeak0005.PNG" class="img-responsive" alt="Responsive image">
-              </a>
-            </div>
-            <div class="media-left popup">
-              <a href="../images/sneakpeak0001.PNG" target="_blank">
-                <img src="../images/sneakpeak0001.PNG" class="img-responsive" alt="Responsive image">
-              </a>
-            </div>
-            <div class="media-left popup">
-              <a href="../images/sneakpeak0003.PNG" target="_blank">
-                <img src="../images/sneakpeak0003.PNG" class="img-responsive" alt="Responsive image">
-              </a>
-            </div>
-            <div class="media-left">
-              <div class="popup">
-              <a href="../images/sneakpeak0004.PNG" target="_blank">
-                <img src="../images/sneakpeak0004.PNG" class="img-responsive" alt="Responsive image">
-              </a>
+              <div class="item">
+                <a href="../images/sneakpeak0005.PNG" target="_blank">
+                  <img src="../images/sneakpeak0005.PNG" class="img-responsive" alt="Responsive image" width="720">
+                </a>
+              </div>
+              <div class="item">
+                <a href="../images/sneakpeak0001.PNG" target="_blank">
+                  <img src="../images/sneakpeak0001.PNG" class="img-responsive" alt="Responsive image" width="720">
+                </a>
+              </div>
+              <div class="item">
+                <a href="../images/sneakpeak0003.PNG" target="_blank">
+                  <img src="../images/sneakpeak0003.PNG" class="img-responsive" alt="Responsive image" width="720">
+                </a>
+              </div>
+              <div class="item">
+                <a href="../images/sneakpeak0004.PNG" target="_blank">
+                  <img src="../images/sneakpeak0004.PNG" class="img-responsive" alt="Responsive image"width="720">
+                </a>
               </div>
             </div>
+        
+              <a class="left carousel-control" href="#cbrCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" href="#cbrCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+          </div>
+        </div>
     </section>
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
