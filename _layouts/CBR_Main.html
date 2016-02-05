@@ -32,7 +32,9 @@
               <p>Please note that once you load the Table so that it is displayed, it will slow down the browser when flicking from panel to panel. I hope to resolve this by displaying only what is needed. My advice is to refresh the page once you have had a look at the table.</p>
             </div>
             <button type="button" class="btn btn-primary" ng-click="cbrdataCtrl.CreateTable()">Display Table</button>
-            <div class="table-responsive" id="table"></div>
+            <div class="table-responsive table-hover" id="table">
+                <cbrtable></cbrtable>
+            </div>
         </div>
     </section>
     <section id="cbrChart" ng-show="cbrdataCtrl.isSelected(2)">
@@ -43,7 +45,7 @@
               <p>The charts currently display the info addict data up to Turn 323. I have not received any further updates for turns 324 - 341. I'm sure at some point it will get updated, and be provided your enjoyment.</p>
             </div>
       </div>
-      <chart id="Chart">
+      <chart id="Chart" ng-controller="cbrChartController as chartCtrl">
         
       </chart>
     </section>
@@ -60,12 +62,14 @@
             </div>
             <div id="cbrImportCivFile">         
                 <form id="cbrCivForm">
-                  <button class="btn btn-primary" ng-click="cbrImport.ImportCivilisation('data/InfoAddictLog.csv')">Import Civilisations</button>
+                  <textarea name="CivTxt" ng-model="CivList"></textarea>
+                  <button class="btn btn-primary" ng-click="cbrImport.ImportCivilisation(CivList)">Import Civilisations</button>
                 </form>
             </div>
             <div id="cbrImportDataFile" ng-show="cbrImport.CanShowImportDataButton()">
                 <form id="cbrDataForm">
-                    <button type="button" class="btn btn-primary" ng-click="cbrImport.ImportInfoAddictData('data/InfoAddictHistoricalData.csv')">Import InfoAddict Data</button>
+                    <textarea name="DataTxt" ng-model="InfoAddictTxt"></textarea>
+                    <button type="button" class="btn btn-primary" ng-click="cbrImport.ImportInfoAddictData(InfoAddictTxt)">Import InfoAddict Data</button>
                 </form>
             </div>
             <div id="cbrSaveDataFile" ng-show="cbrImport.CanShowSaveButton()">
@@ -120,6 +124,7 @@
     <script src="../javascripts/d3.min.js"></script>
     <script src="../javascripts/app.js"></script>
     <script src="../javascripts/cbrData.js"></script>
+    <script src="../javascripts/cbrChart.js"></script>
     <!-- <script src="../javascripts/cbrNav.js"></script> -->
     <script type="text/javascript">
     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

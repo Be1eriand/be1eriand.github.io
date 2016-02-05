@@ -1,21 +1,9 @@
 (function () {
-var app = angular.module('cbrdataapp',['cbrData'],
+var app = angular.module('cbrdataapp',['cbrData','cbrChart'],
     function($interpolateProvider) {
         $interpolateProvider.startSymbol('//');
         $interpolateProvider.endSymbol('//');
 });
-
-app.directive('chart', function() {
-    return {
-            restrict: 'E',
-            templateUrl: 'chart.html'
-        };
-});
-
-app.controller('cbrChartController', ['$scope', function ($scope) {
-    this.vis = d3.select("#graph")
-                 
-}]);
 
 app.directive('cbrnavbar', function() {
                    
@@ -24,6 +12,15 @@ app.directive('cbrnavbar', function() {
       templateUrl: 'cbrnavbar.html'
     };
   });
+
+app.directive('cbrtable', function(){
+             
+        return {
+            restrict: 'E',
+            templateUrl: 'table.html'
+        };
+              
+     });
  
  app.controller('cbrnavController',['$rootScope', function ($rootScope) {
         $rootScope.cbrTab = 1;
@@ -47,15 +44,12 @@ app.controller('cbrImportController',['$scope', function($scope){
 
     
     this.ImportCivilisation = function(importCivFile){ //"data/InfoAddictLog.csv"
-        d3.text(importCivFile, function(data){
-            $scope.ImportedCivList = d3.csv.parse(data);
-        });
+        $scope.ImportedCivList = d3.csv.parse(importCivFile);
         this.CivFileLoaded = 1;
     };
-    
+   
     this.ImportInfoAddictData = function(importDataFile){ //"data/InfoAddictHistoricalData.csv"
-        d3.text(importDataFile, function(data){
-            $scope.InfoAddictData = d3.csv.parse(data, function (d){
+            $scope.InfoAddictData = d3.csv.parse(importDataFile, function (d){
                 splitValues = d.Value.split(" ");
                 if (splitValues[0]==="") {
                     splitValues.shift()
@@ -98,7 +92,6 @@ app.controller('cbrImportController',['$scope', function($scope){
                     "Tourism": InfoData['to']
                     };
                 });
-        });
         this.DataFileLoaded = 1;
     };    
     
