@@ -1,17 +1,9 @@
 (function () {
-var app = angular.module('cbrdataapp',['cbrData','cbrChart'],
+var app = angular.module('cbrdataapp',['cbrData','cbrChart','cbrNav'],
     function($interpolateProvider) {
         $interpolateProvider.startSymbol('//');
         $interpolateProvider.endSymbol('//');
 });
-
-app.directive('cbrnavbar', function() {
-                   
-    return {
-      restrict: 'E',
-      templateUrl: 'cbrnavbar.html'
-    };
-  });
 
 app.directive('cbrtable', function(){
              
@@ -35,20 +27,7 @@ app.directive('cbrtable', function(){
     };
     
  });
- 
- app.controller('cbrnavController',['$rootScope', function ($rootScope) {
-        $rootScope.cbrTab = 1;
-        
-        this.selectTab = function(setTab){
-            $rootScope.cbrTab = setTab;
-        };
   
-        this.isSelected = function(checkTab){
-            return ($rootScope.cbrTab === checkTab);
-            };        
-                 
-}]);
- 
 app.controller('cbrImportController',['$scope', function($scope){
     $scope.InfoAddictData = {};
     $scope.ImportedCivList = {};

@@ -4,7 +4,7 @@
       <option ng-repeat='stat in stats'" value="//stat//">// stat //</option>
     </select>
         <label for="CivSelect"> Civilisation: </label>
-    <select name="CivSelect" id="CivSelect" ng-model="selectedCiv" ng-change="chartCtrl.CreateChart('Turn',selectedStat,selectedCiv)" multiple>
+    <select name="CivSelect" id="CivSelect" ng-model="selectedCiv" ng-change="chartCtrl.CreateChart('Turn',selectedStat,selectedCiv)" multiple size="10">
       <option ng-repeat="civ in civilisations" value="// civ //">// civ //</option>
     </select>
 </form>
