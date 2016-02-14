@@ -1,0 +1,32 @@
+<section id="cbrImport">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Importing and Parsing InfoAddict Data</div>
+        <div class="panel-body">
+          <p>To process the raw InfoAddict Data, first copy and paste your CSV file containing a list of Civs and their Player ID. The Second Step is to copy and paste the raw InfoAddict Data from the CSV file into the next Text Box. Then click the button to save the processed InfoAddict file to your computer.</p>
+          <p>Note: If you are using Internet Explorer, it will download the file as a big long number to your save directory. To load the file in to whatever spreadsheet program you wish change the name of the file to filename.csv.
+          It seems to work fine in Chrome, and will save as a nice filename that you choose.</p>
+        </div>
+        <div id="cbrImportCivFile">         
+            <form id="cbrCivForm" role="form">
+              <div class="form-group">
+                <textarea name="CivTxt" ng-model="CivList"></textarea>
+                <button class="btn btn-primary" ng-click="cbrImport.ImportCivilisation(CivList)">Import Civilisations</button>
+              </div>
+            </form>
+        </div>
+        <div id="cbrImportDataFile" ng-show="cbrImport.CanShowImportDataButton()">
+            <form id="cbrDataForm" role="form">
+              <div class="form-group">
+                <textarea name="DataTxt" ng-model="InfoAddictTxt"></textarea>
+                <button type="button" class="btn btn-primary" ng-click="cbrImport.ImportInfoAddictData(InfoAddictTxt)">Import InfoAddict Data</button>
+              </div>
+            </form>
+        </div>
+        <div id="cbrSaveDataFile" ng-show="cbrImport.CanShowSaveButton()">
+            <span class="sr-only"></span>
+            <button type="button" class="btn btn-primary" ng-click="cbrImport.SaveInfoAddictData('InfoAddictData.csv')">Save File as CSV</button>
+            <a hidden="" id="savelink" download="InfoAddictData.csv"></a>
+        </div>
+    </div>
+</section>

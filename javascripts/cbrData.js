@@ -36,11 +36,16 @@ app.controller('cbrDataController', ['$scope','$rootScope', function ($scope,$ro
     $scope.selectedCiv = {};
     $scope.selectedStat = {};
     $scope.parsed = {};
+    $scope.CivColors = {};
 
     this.isSelected = function(checkTab){
         return ($rootScope.cbrTab === checkTab);
         };
     
+    d3.text("data/Civ Colors.csv", function(data) {
+        $scope.CivColors = d3.csv.parse(data);
+    });
+       
     d3.text("data/Stats.csv", function(data){   
       $scope.stats = d3.csv.parse(data,function(d){
             return d.Stat;
@@ -65,7 +70,7 @@ app.controller('cbrDataController', ['$scope','$rootScope', function ($scope,$ro
     
     $scope.cbrdata.parsedRows = d3.csv.parseRows(datasetText);
 
-     $scope.parsed = parsedCSV;
+    $scope.parsed = parsedCSV;
         
     $scope.cbrdata.turn = d3.nest()
                             .key(function(d) { return d.Turn})
@@ -76,53 +81,6 @@ app.controller('cbrDataController', ['$scope','$rootScope', function ($scope,$ro
                             .entries(parsedCSV);
     
     });
-   
-   this.data = $scope.cbrdata.parsed;
-   
-    this.CreateTable = function(){
-        
-        var dataset = $scope.cbrdata.parsed;
-            columns = $scope.stats;
-        
-        
-        var cbrTable = d3.select("#table")
-                        .append("cbrTable")
-                        .attr("class","table table-bordered")
-                        .style("width","1925px")
-                        .style("border-collapse", "collapse")
-                        .style("border","1px");
-//            cbrHead = cbrTable.append("cbrHead");
-            //cbrBody = cbrTable.append("cbrBody");
-            
-        //    cbrHead.append("tr")
-        //            //.attr("class", "table table-bordered")
-        //            .selectAll("th")
-        //            .data(columns)
-        //            .enter()
-        //            .append("th")
-        //            //.attr("class", "table table-bordered")
-        //            .text(function(column) { return column; });
-        //            
-        //var cbrTableRow = cbrHead.selectAll("tr")
-        //                .data(dataset)
-        //                .enter()
-        //                .append("tr")
-        //                //.attr("class", "table table-bordered");
-        //                
-        // var cbrTableData  = cbrTableRow.selectAll("td")
-        //                                .data(function(row) {
-        //                                            return columns.map(function(column) {
-        //                                                    return {column: column, value: row[column]};
-        //                                        });
-        //                                    })
-        //                                .enter().append("td")
-        //                                //.attr("class", "table table-bordered")
-        //                                .style("text-align","left")
-        //                                .text(function(d){
-        //                                    return d.value;
-        //                                    });
-        
-    }
     
 }]);
     

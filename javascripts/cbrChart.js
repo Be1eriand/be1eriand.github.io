@@ -12,9 +12,9 @@ app.directive('chart', function() {
 app.controller('cbrChartController', ['$scope', function ($scope) {
     this.vis = d3.select("#graph")
     
-        this.CreateChart = function(xVar,yVar,Civ) {
+        this.CreateChart = function(xVar,yVar,Civ,cbrData) {
         
-        var dataset = $scope.cbrdata.parsed.filter(function(d) {
+        var dataset = cbrData.filter(function(d) {
              for (i in Civ) {
               if (d["Civilization"] === Civ[i]) {return true;}
              } 
@@ -33,15 +33,22 @@ app.controller('cbrChartController', ['$scope', function ($scope) {
                   
                 d3.select("#Chart")
                   .append("div")
-                  .attr("id","graph")
+                  .attr("id","graph");
+                  
+        function dotTheDots(d,i) {
+            console.log(d3.event !== null ? d3.event.clientX : 0);
+            console.log(d3.event !== null ? d3.event.clientY : 0);
+        }
                                
         var vis = d3.select("#graph")
                     .append("svg")
+                    .on("mousemove",dotTheDots)
                     .text(name)
                     .attr("width", width + margin.left + margin.right)
                     .attr("height", height + margin.top + margin.bottom)
                     .append("g")
                     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
                     
         var extent = function(d,key){
                     var min = 0;
@@ -102,8 +109,12 @@ app.controller('cbrChartController', ['$scope', function ($scope) {
             var lineColour = {};
             
             for (i in Civ) {
-                var s = d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255)
-                lineColour[i] = s.toString();
+                 for (j in $scope.CivColors) {
+                    if ($scope.CivColors[j].Civilization===Civ[i]) {
+                        var s = d3.rgb($scope.CivColors[j].Red*255,$scope.CivColors[j].Green*255, $scope.CivColors[j].Blue*255)
+                        lineColour[i] = s.toString();
+                    }
+                }
             }
             var legend = vis.selectAll("g.legend")
                     .data(Civ)
@@ -112,7 +123,6 @@ app.controller('cbrChartController', ['$scope', function ($scope) {
                     .attr("transform", function(d, i) { return "translate(" + (100) + "," + (i * 20) + ")"; });
               
                 legend.append("svg:circle")
-                    //.attr("class", String)
                     .attr("r", 5)
                     .style("fill",function(d,i) {return lineColour[i]});
 
@@ -131,7 +141,8 @@ app.controller('cbrChartController', ['$scope', function ($scope) {
             }
                          
     };
-                 
+        
+        
 }]);  
     
     
