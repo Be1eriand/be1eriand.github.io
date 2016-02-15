@@ -36,30 +36,11 @@ app.config(function($routeProvider, $locationProvider) {
     redirectTo: '/Home'
     });
   
-  
-  // configure html5 to get links working on jsfiddle
   $locationProvider.html5Mode(true);
 });
 
-
-
-
-
-
-
-
-
-app.directive('cbrtable', function(){
-             
-        return {
-            restrict: 'E',
-            templateUrl: 'table.html'
-        };
-              
-     });
- 
- app.filter("cbrSelect", function() { // register new filter
-     return function(row, stat, value) { // filter arguments
+ app.filter("cbrSelect", function() {
+     return function(row, stat, value) {
         try {
             return row.filter(function(d) {
                 return d[stat] == value;
@@ -71,7 +52,6 @@ app.directive('cbrtable', function(){
     };
     
  });
-  
 
 })();               
         
