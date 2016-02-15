@@ -43,14 +43,16 @@ app.controller('cbrDataController', ['$scope','$rootScope', function ($scope,$ro
         };
     
     d3.text("data/Civ Colors.csv", function(data) {
-        $scope.CivColors = d3.csv.parse(data);
+        var colordata = d3.csv.parse(data);
+            for (var i in colordata) {
+               $scope.CivColors[colordata[i].Civilization] = colordata[i];
+            }
     });
        
     d3.text("data/Stats.csv", function(data){   
       $scope.stats = d3.csv.parse(data,function(d){
             return d.Stat;
         });
-        //$scope.stats.sort();
         $scope.selectedStat = $scope.stats[0];
     });
    
