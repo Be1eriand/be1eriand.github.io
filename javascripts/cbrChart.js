@@ -2,53 +2,70 @@
 
 var app = angular.module('cbrChart',[]);
 
-app.directive('chart', function() {
-    return {
-            restrict: 'E',
-            templateUrl: 'chart.html'
-        };
-});
+//app.directive('chart', function() {
+//    return {
+//            restrict: 'E',
+//            templateUrl: 'chart.html'
+//        };
+//});
 
 app.controller('cbrChartController', ['$scope', function ($scope) {
-    this.vis = d3.select("#graph")
+    
+    $scope.selectedStat="Turn";
+    $scope.selectedCiv="Australia";
+    
+    $scope.data = [];
+    $scope.options = {
+            chart: {
+                type: 'lineChart',
+                height: 700,
+                margin : {
+                    top: 50,
+                    right: 100,
+                    bottom: 50,
+                    left: 100
+                },
+                useInteractiveGuideline: true,
+                dispatch: {
+                    stateChange: function(e){ console.log("stateChange"); },
+                    changeState: function(e){ console.log("changeState"); },
+                    tooltipShow: function(e){ console.log("tooltipShow"); },
+                    tooltipHide: function(e){ console.log("tooltipHide"); }
+                },
+                xAxis: {
+                    axisLabel: ""
+                },
+                yAxis: {
+                    axisLabel: "",
+                    tickFormat: function(d){
+                        return d3.format('1f')(d);
+                    }
+                },
+                callback: function(chart){
+                    console.log("!!! lineChart callback !!!");
+                }
+            }
+        };
+    
     
     this.CreateChart = function(xVar,yVar,Civ,cbrData) {
         
     nv.addGraph(function() {
-        var data = [];
-            dataset = [];
-            
-        d = cbrUtilities.covertDataToXY(cbrData,xVar,yVar);
+
+        var dataset = [];
         
-        for (var i in Civ) {
-            for (var c in d){
-                if (c === Civ[i]) {
-                    data[Civ[i]] = d[c];
-                }
-            }
-        }
+        dataset = cbrUtilities.prepareData(cbrUtilities.covertDataToXY(cbrData,xVar,yVar),Civ,$scope.CivColors);
         
         var chart = nv.models.lineChart()
                     .useInteractiveGuideline(true)
                     .showLegend(true)
                     .showYAxis(true)
                     .showXAxis(true)
-                    .x(function(d) {return d.x;})
-                    .y(function(d) {return d.y;})
-            
-        for (civ in data) {
-            var d = {};
-            dataset.push({
-                values: data[civ],
-                key: civ,
-                color: d3.rgb($scope.CivColors[civ].Red*255,$scope.CivColors[civ].Green*255, $scope.CivColors[civ].Blue*255).toString()
-            })
-        }
-        
-        chart.xAxis     //Chart x-axis settings
+         
+        chart.xAxis 
              .axisLabel(xVar);
 
-        chart.yAxis     //Chart y-axis settings
+        chart.yAxis 
              .axisLabel(yVar)
              .tickFormat(d3.format("f"));
         
@@ -64,7 +81,42 @@ app.controller('cbrChartController', ['$scope', function ($scope) {
                       
     };
  
+    this.updateData = function(xVar,yVar,Civ,cbrData) {
         
+        $scope.data = cbrUtilities.prepareData(cbrUtilities.covertDataToXY(cbrData,xVar,yVar),Civ,$scope.CivColors);
+        
+        $scope.options = {
+            chart: {
+                type: 'lineChart',
+                height: 700,
+                margin : {
+                    top: 50,
+                    right: 100,
+                    bottom: 50,
+                    left: 100
+                },
+                useInteractiveGuideline: true,
+                dispatch: {
+                    stateChange: function(e){ console.log("stateChange"); },
+                    changeState: function(e){ console.log("changeState"); },
+                    tooltipShow: function(e){ console.log("tooltipShow"); },
+                    tooltipHide: function(e){ console.log("tooltipHide"); }
+                },
+                xAxis: {
+                    axisLabel: xVar
+                },
+                yAxis: {
+                    axisLabel: yVar,
+                    tickFormat: function(d){
+                        return d3.format('1f')(d);
+                    }
+                },
+                callback: function(chart){
+                    console.log("!!! lineChart callback !!!");
+                }
+            }
+        };
+    }
 }]);  
     
     

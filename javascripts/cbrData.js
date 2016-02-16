@@ -32,7 +32,7 @@ app.controller('cbrDataController', ['$scope','$rootScope', function ($scope,$ro
     $scope.cbrdata.turn = {};
     $scope.cbrdata.civ = {};
     $scope.stats = {};
-    $scope.civilisations = {};
+    $scope.civilisations = [];
     $scope.selectedCiv = {};
     $scope.selectedStat = {};
     $scope.parsed = {};
@@ -48,21 +48,6 @@ app.controller('cbrDataController', ['$scope','$rootScope', function ($scope,$ro
                $scope.CivColors[colordata[i].Civilization] = colordata[i];
             }
     });
-       
-    d3.text("data/Stats.csv", function(data){   
-      $scope.stats = d3.csv.parse(data,function(d){
-            return d.Stat;
-        });
-        $scope.selectedStat = $scope.stats[0];
-    });
-   
-   d3.text("data/Civilisation.csv", function(data){   
-       $scope.civilisations = d3.csv.parse(data,function(d){
-            return d.Civilization;
-       });
-       $scope.civilisations.sort();
-       $scope.selectedCiv = $scope.civilisations[0];
-    });
    
     d3.text("data/CBR Data.csv", function(datasetText) {
 
@@ -71,6 +56,10 @@ app.controller('cbrDataController', ['$scope','$rootScope', function ($scope,$ro
     $scope.cbrdata.parsed = parsedCSV;
     
     $scope.cbrdata.parsedRows = d3.csv.parseRows(datasetText);
+    
+    $scope.stats = $scope.cbrdata.parsedRows[0];
+    
+    $scope.selectedStat = $scope.stats[0];
 
     $scope.parsed = parsedCSV;
         
@@ -81,6 +70,13 @@ app.controller('cbrDataController', ['$scope','$rootScope', function ($scope,$ro
     $scope.cbrdata.civ = d3.nest()
                             .key(function(d) { return d.Civilization})
                             .entries(parsedCSV);
+    
+    for (var i in $scope.cbrdata.civ) {
+        $scope.civilisations[i] = $scope.cbrdata.civ[i].key;
+    }
+    
+    $scope.civilisations.sort();
+    $scope.selectedCiv = $scope.civilisations[0];
     
     });
     
