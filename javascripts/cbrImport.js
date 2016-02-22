@@ -3,6 +3,7 @@
 var app = angular.module('cbrImport',[]);
 
 app.controller('cbrImportController',['$scope', function($scope){
+
     $scope.InfoAddictData = {};
     $scope.ImportedCivList = {};
     

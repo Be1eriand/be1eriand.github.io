@@ -10,7 +10,7 @@ var app = angular.module('cbrChart',[]);
 //});
 
 app.controller('cbrChartController', ['$scope', function ($scope) {
-    
+
     $scope.selectedStat="Turn";
     $scope.selectedCiv="Australia";
     
