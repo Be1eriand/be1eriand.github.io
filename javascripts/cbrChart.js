@@ -17,7 +17,7 @@ app.controller('cbrChartController', ['$scope', function ($scope) {
     $scope.data = [];
     $scope.options = {
             chart: {
-                type: 'lineChart',
+                type: 'lineWithFocusChart',
                 height: 700,
                 margin : {
                     top: 50,
@@ -38,56 +38,24 @@ app.controller('cbrChartController', ['$scope', function ($scope) {
                 yAxis: {
                     axisLabel: "",
                     tickFormat: function(d){
-                        return d3.format('1f')(d);
+                        return d3.format(',f')(d);
                     }
                 },
+                x2Axis: {},
+                y2Axis: {},
                 callback: function(chart){
                     console.log("!!! lineChart callback !!!");
                 }
             }
         };
-    
-    
-    this.CreateChart = function(xVar,yVar,Civ,cbrData) {
-        
-    nv.addGraph(function() {
 
-        var dataset = [];
-        
-        dataset = cbrUtilities.prepareData(cbrUtilities.covertDataToXY(cbrData,xVar,yVar),Civ,$scope.CivColors);
-        
-        var chart = nv.models.lineChart()
-                    .useInteractiveGuideline(true)
-                    .showLegend(true)
-                    .showYAxis(true)
-                    .showXAxis(true)
-         
-        chart.xAxis 
-             .axisLabel(xVar);
-
-        chart.yAxis 
-             .axisLabel(yVar)
-             .tickFormat(d3.format("f"));
-        
-        d3.select('#graph svg')
-          .datum(dataset)
-          .call(chart);
-    
-        nv.utils.windowResize(function() { chart.update() });
-        
-        return chart;
-    
-    });
-                      
-    };
- 
     this.updateData = function(xVar,yVar,Civ,cbrData) {
         
         $scope.data = cbrUtilities.prepareData(cbrUtilities.covertDataToXY(cbrData,xVar,yVar),Civ,$scope.CivColors);
         
         $scope.options = {
             chart: {
-                type: 'lineChart',
+                type: 'lineWithFocusChart',
                 height: 700,
                 margin : {
                     top: 50,
@@ -111,6 +79,8 @@ app.controller('cbrChartController', ['$scope', function ($scope) {
                         return d3.format('1f')(d);
                     }
                 },
+                x2Axis: {},
+                y2Axis: {},
                 callback: function(chart){
                     console.log("!!! lineChart callback !!!");
                 }
