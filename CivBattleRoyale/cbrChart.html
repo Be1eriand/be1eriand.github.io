@@ -7,13 +7,22 @@
         </div>
     </div>
     <form name="cbrStatSelect">
-        <label for="StatSelect"> Stat: </label>
-        <select name="StatSelect" id="StatSelect" ng-model="selectedStat" ng-change="chartCtrl.updateData('Turn',selectedStat,selectedCiv,cbrdata.civ)">
+        <label for="yStatSelect"> Stat: </label>
+        <select name="yStatSelect" id="yStatSelect" ng-model="yStat" ng-change="chartCtrl.updateData(ChartType,xStat,yStat,selectedCiv,cbrdata.civ)">
           <option ng-repeat='stat in stats track by stat'" value="//stat//">// stat //</option>
         </select>
-            <label for="CivSelect"> Civilisation: </label>
-        <select name="CivSelect" id="CivSelect" ng-model="selectedCiv" ng-change="chartCtrl.updateData('Turn',selectedStat,selectedCiv,cbrdata.civ)" multiple size="10">
+        <label for="xStatSelect"> per: </label>
+        <select name="xStatSelect" id="xStatSelect" ng-model="xStat" ng-change="chartCtrl.updateData(ChartType,xStat,yStat,selectedCiv,cbrdata.civ)">
+          <option ng-repeat='stat in stats track by stat'" value="//stat//">// stat //</option>
+        </select>
+        <label for="CivSelect"> Civilisation: </label>
+        <select name="CivSelect" id="CivSelect" ng-model="selectedCiv" ng-change="chartCtrl.updateData(ChartType,xStat,yStat,selectedCiv,cbrdata.civ)" multiple size="10">
           <option ng-repeat="civ in civilisations track by civ" value="// civ //">// civ //</option>
+        </select>
+        <label for="ChartType">ChartType:</label>
+        <select name="ChartType" id="ChartType" ng-model="ChartType" ng-change="chartCtrl.updateData(ChartType,xStat,yStat,selectedCiv,cbrdata.civ)">
+            <option value="lineWithFocusChart">Line With Focus Chart</option>
+            <option value="scatterChart">Scatter Chart</option>
         </select>
     </form>
     <div>
