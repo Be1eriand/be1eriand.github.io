@@ -49,7 +49,7 @@ app.controller('cbrDataController', ['$scope','$rootScope', function ($scope,$ro
             }
     });
    
-    d3.text("data/CBR Data.csv", function(datasetText) {
+    d3.text("data/CBR.Data.csv", function(datasetText) {
 
     var parsedCSV = d3.csv.parse(datasetText);
         
