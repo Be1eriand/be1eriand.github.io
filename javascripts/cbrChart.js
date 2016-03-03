@@ -68,13 +68,94 @@ app.controller('cbrChartController', ['$scope', function ($scope) {
                 },
                 useInteractiveGuideline: true,
                 xAxis: {
-                    axisLabel: xVar
+                    axisLabel: xVar,
+                    tickFormat : function(d) {
+                                if (xVar==="Turn") {
+                                    var t = 0;
+                                    if (d <= 100) {
+                                        t  = (-4000 + d * 15)
+                                    }
+                                    if ((d > 100) & (d <= 400)) {    
+                                        if (d == 350) {
+                                            t  = 1;
+                                        } else {
+                                                t  = -2500 + (d - 100) * 10
+                                        }
+                                    }
+                                    if ((d > 400) & (d <= 570)) {
+                                        t  = 500 + (d - 400) * 5
+                                    }
+                                    if ((d > 570) & (d <= 771)) {
+                                        t  = 1350 + (d - 570) * 2
+                                    }
+
+                                    if ((d > 771) & (d <= 900)) {
+                                        t  = 1752 + (d - 771) * 1
+                                    }
+                                    if ((d > 900) & (d <= 1080)) {
+                                        t  = 1881 + (d - 900) * 0.5
+                                    }
+                                    if ((d > 1080) & (d <= 1344)) {
+                                        t  = 1971 + (d - 1080) * 0.25
+                                    }
+                                    if (d > 1344) {
+                                        t  = 2037 + (d - 1344) * (1.0 / 12.0)
+                                    }
+                                    if (t <= 0) {
+                                        return Math.abs(t) + "BC"
+                                    } else if (t > 0) {
+                                        return t + "AD"
+                                    }
+                                }
+                                else {
+                                        return d3.format('1f')(d);
+                                }
+                        }
                 },
                 yAxis: {
                     axisLabel: yVar,
-                    tickFormat: function(d){
-                        return d3.format('1f')(d);
-                    }
+                    tickFormat: function(d) {
+                                if (yVar==="Turn") {
+                                    var t = 0;
+                                    if (d <= 100) {
+                                        t  = (-4000 + d * 15)
+                                    }
+                                    if ((d > 100) & (d <= 400)) {    
+                                        if (d == 350) {
+                                            t  = 1;
+                                        } else {
+                                                t  = -2500 + (d - 100) * 10
+                                        }
+                                    }
+                                    if ((d > 400) & (d <= 570)) {
+                                        t  = 500 + (d - 400) * 5
+                                    }
+                                    if ((d > 570) & (d <= 771)) {
+                                        t  = 1350 + (d - 570) * 2
+                                    }
+
+                                    if ((d > 771) & (d <= 900)) {
+                                        t  = 1752 + (d - 771) * 1
+                                    }
+                                    if ((d > 900) & (d <= 1080)) {
+                                        t  = 1881 + (d - 900) * 0.5
+                                    }
+                                    if ((d > 1080) & (d <= 1344)) {
+                                        t  = 1971 + (d - 1080) * 0.25
+                                    }
+                                    if (d > 1344) {
+                                        t  = 2037 + (d - 1344) * (1.0 / 12.0)
+                                    }
+                                    if (t <= 0) {
+                                        return Math.abs(t) + "BC"
+                                    } else if (t > 0) {
+                                        return t + "AD"
+                                    }
+                                }
+                                else {
+                                        return d3.format('1f')(d);
+                                }
+                        }
                 },
                 x2Axis: {},
                 y2Axis: {}
@@ -97,15 +178,93 @@ app.controller('cbrChartController', ['$scope', function ($scope) {
                 duration: 350,
                 xAxis: {
                     axisLabel: xVar,
-                    tickFormat: function(d){
-                        return d3.format(',.2f')(d);
-                    }
+                    tickFormat: function(d) {
+                                if (xVar==="Turn") {
+                                    var t = 0;
+                                    if (d <= 100) {
+                                        t  = (-4000 + d * 15)
+                                    }
+                                    if ((d > 100) & (d <= 400)) {    
+                                        if (d == 350) {
+                                            t  = 1;
+                                        } else {
+                                                t  = -2500 + (d - 100) * 10
+                                        }
+                                    }
+                                    if ((d > 400) & (d <= 570)) {
+                                        t  = 500 + (d - 400) * 5
+                                    }
+                                    if ((d > 570) & (d <= 771)) {
+                                        t  = 1350 + (d - 570) * 2
+                                    }
+
+                                    if ((d > 771) & (d <= 900)) {
+                                        t  = 1752 + (d - 771) * 1
+                                    }
+                                    if ((d > 900) & (d <= 1080)) {
+                                        t  = 1881 + (d - 900) * 0.5
+                                    }
+                                    if ((d > 1080) & (d <= 1344)) {
+                                        t  = 1971 + (d - 1080) * 0.25
+                                    }
+                                    if (d > 1344) {
+                                        t  = 2037 + (d - 1344) * (1.0 / 12.0)
+                                    }
+                                    if (t <= 0) {
+                                        return Math.abs(t) + "BC"
+                                    } else if (t > 0) {
+                                        return t + "AD"
+                                    }
+                                }
+                                else {
+                                        return d3.format('.2f')(d);
+                                }
+                        }
                 },
                 yAxis: {
                     axisLabel: yVar,
-                    tickFormat: function(d){
-                        return d3.format(',.2f')(d);
-                    }
+                    tickFormat: function(d) {
+                                if (yVar==="Turn") {
+                                    var t = 0;
+                                    if (d <= 100) {
+                                        t  = (-4000 + d * 15)
+                                    }
+                                    if ((d > 100) & (d <= 400)) {    
+                                        if (d == 350) {
+                                            t  = 1;
+                                        } else {
+                                                t  = -2500 + (d - 100) * 10
+                                        }
+                                    }
+                                    if ((d > 400) & (d <= 570)) {
+                                        t  = 500 + (d - 400) * 5
+                                    }
+                                    if ((d > 570) & (d <= 771)) {
+                                        t  = 1350 + (d - 570) * 2
+                                    }
+
+                                    if ((d > 771) & (d <= 900)) {
+                                        t  = 1752 + (d - 771) * 1
+                                    }
+                                    if ((d > 900) & (d <= 1080)) {
+                                        t  = 1881 + (d - 900) * 0.5
+                                    }
+                                    if ((d > 1080) & (d <= 1344)) {
+                                        t  = 1971 + (d - 1080) * 0.25
+                                    }
+                                    if (d > 1344) {
+                                        t  = 2037 + (d - 1344) * (1.0 / 12.0)
+                                    }
+                                    if (t <= 0) {
+                                        return Math.abs(t) + "BC"
+                                    } else if (t > 0) {
+                                        return t + "AD"
+                                    }
+                                }
+                                else {
+                                        return d3.format('.2f')(d);
+                                }
+                        }
                 },
                 zoom: {
                   enabled: true,
