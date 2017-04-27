@@ -2,7 +2,7 @@
  
 var app = angular.module('WarcraftNav',[]);
 
-app.directive('Warcraftnavbar', function() {
+app.directive('warcraftnavbar', function() {
                    
     return {
       restrict: 'E',
