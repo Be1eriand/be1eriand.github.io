@@ -1,6 +1,6 @@
 (function () {
    
-var app = angular.module('WarcraftApp',['ngRoute','WarcraftMain'],
+var app = angular.module('WarcraftApp',['ngRoute','WarcraftMain','WarcraftNav'],
     function($interpolateProvider) {
         $interpolateProvider.startSymbol('//');
         $interpolateProvider.endSymbol('//');
