@@ -3,7 +3,11 @@ body {
   background-color: black;
 }
 
-#warcraftstyle {
-  background-image: url("../Warcraft/images/Background.jpg");
-  background-repeat: repeat-x;
+#WarcraftHome {
+  background-color: inherit;
+}
+
+#WarcraftCover {
+    display: block;
+    margin: 0 auto;
 }
